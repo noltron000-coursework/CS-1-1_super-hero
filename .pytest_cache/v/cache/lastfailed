@@ -1,14 +1,9 @@
 {
-  "test_superheroes.py::test_ability_name": true, 
   "test_superheroes.py::test_find_empty_hero": true, 
   "test_superheroes.py::test_find_hero": true, 
   "test_superheroes.py::test_find_unlisted_hero": true, 
-  "test_superheroes.py::test_hero_add_ability": true, 
-  "test_superheroes.py::test_hero_add_multi_ability": true, 
   "test_superheroes.py::test_print_heroes": true, 
   "test_superheroes.py::test_team_hero": true, 
-  "test_superheroes.py::test_team_instance": true, 
-  "test_superheroes.py::test_team_name": true, 
   "test_superheroes.py::test_team_remove_empty_list": true, 
   "test_superheroes.py::test_team_remove_hero": true, 
   "test_superheroes.py::test_team_remove_unlisted": true
