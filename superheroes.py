@@ -32,6 +32,38 @@ class Ability:
 	def update_attack(self, attack_strength):
 		strength = attack_strength
 
+class Weapon(Ability):
+	def attack(self):
+		damage_max = self.strength
+		damage_min = 0
+		damage = random.randint(damage_min, damage_max)
+		return damage
+
+
+
+class Team:
+	def init(self, team_name):
+		self.name = team_name
+		self.heroes = list()
+
+	def add_hero(self, Hero):
+		"""Add Hero object to heroes list."""
+
+	def remove_hero(self, name):
+		"""
+		Remove hero from heroes list.
+		If Hero isn't found return 0.
+		"""
+
+	def find_hero(self, name):
+		"""
+		Find and return hero from heroes list.
+		If Hero isn't found return 0.
+		"""
+
+	def view_all_heroes(self):
+		"""Print out all heroes to the console."""
+
 
 
 if __name__ == "__main__":
