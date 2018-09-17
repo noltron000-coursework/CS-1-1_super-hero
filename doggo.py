@@ -24,3 +24,11 @@ print(my_second_dog.name)
 
 my_first_dog.bark()
 my_second_dog.bark()
+
+my_dogs = list()
+
+my_dogs.append(Dog("Lucky"))
+my_dogs.append(Dog("Tofu"))
+
+for dog in my_dogs:
+	dog.bark()
