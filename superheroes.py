@@ -44,22 +44,21 @@ class Weapon(Ability):
 
 
 class Team(Hero):
-	def init(self, team_name):
+	def __init__(self, team_name):
 		self.name = team_name
 		self.heroes = list()
 
 	def add_hero(self, Hero):
 		self.heroes.append(Hero)
 
-	def remove_hero(self, name):
-		found_hero = false
+	def remove_hero(self, name): # NEEDS REFACTORED
+		found_hero = False
 		for hero in self.heroes:
-			if(hero == name):
-				self.heroes.remove(name)
-				found_hero = true
-				break
-		if not found_hero:
-			return 0
+			print("this hero: " + str(hero.name))
+			if(hero.name == name):
+				index = self.heroes.index(hero)
+				self.heroes.pop(index)
+		return 0
 
 	def find_hero(self, name):
 		for hero in self.heroes:
@@ -83,6 +82,6 @@ if __name__ == "__main__":
 	new_ability = Ability("Super Human Strength", 800)
 	hero.add_ability(new_ability)
 	print("HERO ATTACK: " + str(hero.attack()))
+	print("""== nice job ==
 
-	team = Team("One")
-	print(team)
+""")
