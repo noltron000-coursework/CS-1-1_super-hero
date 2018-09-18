@@ -62,13 +62,14 @@ class Team(Hero):
 
 	def find_hero(self, name):
 		for hero in self.heroes:
-			if(hero == name):
-				print(hero)
+			if(hero.name == name):
+				print(hero.name)
+				return hero
+		return 0
 
 	def view_all_heroes(self):
 		for hero in self.heroes:
-			print(hero)
-
+			print(hero.name)
 
 
 if __name__ == "__main__":
