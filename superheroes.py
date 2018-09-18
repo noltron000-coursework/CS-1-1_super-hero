@@ -143,10 +143,11 @@ class Team(Hero):
 		print("REMOVING HERO")
 		found_hero = False
 		for hero in self.heroes:
-			print("this hero: " + str(hero.name))
 			if(hero.name == name):
+				print("this hero: " + str(hero.name))
 				index = self.heroes.index(hero)
 				self.heroes.pop(index)
+		print("None Found :(")
 		return 0
 
 	def find_hero(self, name):
@@ -212,8 +213,8 @@ class Team(Hero):
 			for ability in hero.abilities:
 				offense += Ability.attack(ability)
 		print("- - - - - - -")
-		print("Total:"+str(offense))
-		print("OTHER TEAM:"+str(other_team.name))
+		print(" OUR TEAM:  "+str(self.name))
+		print("THEIR TEAM: "+str(other_team.name))
 		killstreak = other_team.defend(offense, other_team) ### HOW TO GET OTHER TEAM TO DEFEND?
 		killstreak_counter = killstreak
 		while killstreak_counter > 0:
@@ -250,18 +251,10 @@ class Team(Hero):
 
 if __name__ == "__main__":
 	hero = Hero("Wonder Woman")
-	print("HERO ATTACK: " + str(hero.attack()))
-
 	ability = Ability("Divine Speed", 300)
 	hero.add_ability(ability)
-	print("HERO ATTACK: " + str(hero.attack()))
-
 	new_ability = Ability("Super Human Strength", 800)
 	hero.add_ability(new_ability)
-	print("HERO ATTACK: " + str(hero.attack()))
-	print("""== nice job ==
-
-""")
 
 	team_one = Team("One")
 	team_two = Team("Two")
@@ -270,16 +263,16 @@ if __name__ == "__main__":
 	athena = Hero("Athena")
 
 	team_one.add_hero(jodie)
-	team_one.add_hero(jodie)
+	team_one.add_hero(hero)
 	team_two.add_hero(athena)
-
+	team_one.remove_hero("jodie")
 	socks = Armor("Socks", 10)
 	aliens = Ability("Alien Friends", 10000)
 
 	jodie.add_ability(aliens)
 	athena.add_armor(socks)
 
+	print("team 1: " + str(Team("One").name))
+	print("team 2: " + str(Team("Two").name))
 	team_one.attack(team_two)
 
-	print("team 1: " + str(Team("One").heroes))
-	print("team 2: " + str(Team("Two").heroes))
