@@ -1,3 +1,8 @@
 {
+  "test_battles.py::test_revive_heroes": true, 
+  "test_battles.py::test_team_attack": true, 
+  "test_battles.py::test_team_attack_deaths": true, 
+  "test_battles.py::test_team_attack_kills": true, 
+  "test_battles.py::test_team_defend": true, 
   "test_superheroes.py::test_print_heroes": true
 }
