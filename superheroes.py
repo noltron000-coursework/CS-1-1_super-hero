@@ -203,5 +203,6 @@ if __name__ == "__main__":
 	print("team 1: " + str(Team("One").name))
 	print("team 2: " + str(Team("Two").name))
 	team_one.attack(team_two)
-	print(Team("One").stats)
+	print("STATS")
+	Team("Two").stats()
 
