@@ -1,7 +1,5 @@
 import random
 
-
-
 class Hero:
 	def __init__(self, name, health=100):
 		self.name = name
@@ -19,7 +17,7 @@ class Hero:
 		self.armors.append(armor)
 
 	def attack(self):
-		total = 0	
+		total = 0 
 		if self.health == 0:
 			return total
 		else:
@@ -29,7 +27,7 @@ class Hero:
 
 
 	def defend(self):
-		total = 0	
+		total = 0 
 		if self.health == 0:
 			return total
 		else:
@@ -37,22 +35,28 @@ class Hero:
 				total += Armor.defend(item)
 			return total
 
-	def take_damage(self, damage_amt):
-		is_dead = False
-		damage = damage_amt - self.defend() #RECURSIVE
-		self.health -= damage_amt
+	def take_damage(self, damage_amt): ## Check if alive at beginning
+		if self.health > 0:
+			is_alive = True
+		else:
+			is_alive = False
+
+		damage = damage_amt - self.defend()
+		self.health -= damage
 		self.health = max(0, self.health)
-		if self.health == 0:
+
+		if self.health == 0 and is_alive:
 			self.deaths += 1
 			print(str(self.name) + " died!!")
-			is_dead = True
-		if is_dead:
 			return 1
 		else:
 			return 0
 
 	def add_kill(self, num_kills):
 		self.kills += num_kills
+
+	def display(self):
+		print(self.name)
 
 
 
@@ -127,18 +131,22 @@ class Team(Hero):
 	def view_all_heroes(self):
 		print("VIEW HEROES IN TEAM")
 		for hero in self.heroes:
-			print(hero)
+			hero.display()
 
 	def deal_damage(self, damage_amt):
 		killstreak = 0
 		if len(self.heroes) != 0:
-			damage = damage_amt // len(self.heroes)
+			team_size = 0
+			for hero in self.heroes:
+				if hero.health != 0:
+					team_size += 1
+			damage = damage_amt // team_size
 		for hero in self.heroes:
 			killstreak += hero.take_damage(damage) #RECURSIVE
 			# hero.health -= damage
 			# hero.health = max(0, hero.health)
 			# if hero.health == 0:
-			# 	killstreak += 1
+			#   killstreak += 1
 		return killstreak
 
 	def defend(self, damage_amt):
@@ -176,7 +184,6 @@ class Team(Hero):
 			if hero.health > 0:
 				hero.kills += 1
 
-
 if __name__ == "__main__":
 	hero = Hero("Wonder Woman")
 	ability = Ability("Divine Speed", 300)
@@ -205,4 +212,5 @@ if __name__ == "__main__":
 	team_one.attack(team_two)
 	print("STATS")
 	Team("Two").stats()
+	team_one.view_all_heroes()
 
