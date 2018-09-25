@@ -201,7 +201,7 @@ class Team(Hero):
 				defense += armor.defend()
 		damage = damage_amt - defense
 		damage = max(0, damage)
-		killstreak = self.deal_damage(damage) #RECURSIVE
+		killstreak = self.deal_damage(damage)
 		return killstreak
 
 
@@ -245,6 +245,24 @@ class Arena:
 	def __init__(self):
 		self.team_one = None
 		self.team_two = None
+
+	def rematch(self):
+		while True:
+			try:
+				rematch = input("CONTINUE? Y/N: ")
+				if (rematch == "Y"):
+					print("reviving team members...")
+					self.team_one.revive_heroes()
+					self.team_two.revive_heroes()
+					return True
+				elif (rematch == "N"):
+					return False
+				else:
+					print("Invalid Input!")
+					pass
+			except:
+				print("Invalid Input!")
+				pass
 
 	def showdown(self):
 		self.build_team_two()
@@ -308,13 +326,25 @@ o=o=o=o=o=o=o=o=o=o=o=o=o=o=o=o
 				team2_hp += int(hero.health)
 			if team1_hp == 0 and team2_hp == 0:
 				print(tie_text)
-				return tie_text
+				if self.rematch():
+					pass
+				else:
+					print("= GAME OVER =")
+					return False
 			elif team1_hp == 0:
 				print(lose_text)
-				return lose_text
+				if self.rematch():
+					pass
+				else:
+					print("= GAME OVER =")
+					return False
 			elif team2_hp == 0:
 				print(win_text)
-				return win_text
+				if self.rematch():
+					pass
+				else:
+					print("= GAME OVER =")
+					return False
 			else:
 				print("")
 				print("################")
@@ -364,7 +394,7 @@ o=o=o=o=o=o=o=o=o=o=o=o=o=o=o=o
 		while persist:
 			print(f"{len(self.team_one.heroes)} heroes are signed up on this team...")
 			for hero in self.team_one.heroes: # This is difficult because I want to use this for team_two as well... 
-			                                  # Imma do something funky so hold on to your seats.
+			                                  # Imma do something funky so hold on to your seats. See build_team_two()
 				print("==> " + hero.name)
 			print("")
 
@@ -526,33 +556,5 @@ o=o=o=o=o=o=o=o=o=o=o=o=o=o=o=o
 
 
 if __name__ == "__main__":
-	# hero = Hero("Wonder Woman")
-	# ability = Ability("Divine Speed", 300)
-	# hero.add_ability(ability)
-	# new_ability = Ability("Super Human Strength", 800)
-	# hero.add_ability(new_ability)
-
-	# team_one = Team("One")
-	# team_two = Team("Two")
-
-	# jodie = Hero("Jodie Foster")
-	# athena = Hero("Athena")
-
-	# team_one.add_hero(jodie)
-	# team_one.add_hero(hero)
-	# team_two.add_hero(athena)
-	# team_one.remove_hero("jodie")
-	# socks = Armor("Socks", 10)
-	# aliens = Ability("Alien Friends", 10000)
-
-	# jodie.add_ability(aliens)
-	# athena.add_armor(socks)
-
-	# print("team 1: " + str(Team("One").name))
-	# print("team 2: " + str(Team("Two").name))
-	# team_one.attack(team_two)
-	# print("STATS")
-	# Team("Two").stats()
-	# team_one.view_all_heroes()
 	Arena().showdown()
 
